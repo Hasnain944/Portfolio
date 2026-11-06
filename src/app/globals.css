@@ -1,0 +1,92 @@
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/instrument-sans";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-ink font-sans text-fg antialiased;
+  background-image:
+    radial-gradient(60rem 36rem at 12% -8%, rgba(95, 211, 196, 0.09), transparent 60%),
+    radial-gradient(48rem 30rem at 100% 8%, rgba(240, 195, 106, 0.05), transparent 60%);
+  background-repeat: no-repeat;
+}
+
+::selection {
+  background: #5fd3c4;
+  color: #0c1016;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+:focus-visible {
+  outline: 2px solid #5fd3c4;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .section-pad {
+    @apply py-20 sm:py-28;
+  }
+
+  .h-display {
+    @apply font-display font-semibold tracking-tight;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-ink/60 px-3 py-1 text-sm text-fg/90;
+  }
+
+  .btn {
+    @apply inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-ink hover:bg-white hover:shadow-[0_8px_30px_-8px_rgba(95,211,196,0.6)] active:translate-y-px;
+  }
+  .btn-ghost {
+    @apply btn border border-line text-fg hover:border-accent/60 hover:bg-raised active:translate-y-px;
+  }
+
+  .field {
+    @apply block w-full rounded-xl border border-line bg-ink/70 px-4 py-3 text-fg placeholder:text-muted/70 transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+  .field[aria-invalid="true"] {
+    @apply border-red-400/70;
+  }
+}
+
+/* Orbiting stack chips in the hero. Parent rotates, child counter-rotates so labels stay upright. */
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+}
